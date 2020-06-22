@@ -27,8 +27,12 @@ services:
     volumes_from:
         - nginx-proxy
     volumes:
+      - vhost:/etc/nginx/vhost.d
+      - /usr/share/nginx/html
       - certs:/etc/nginx/certs:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - proxy
 
 volumes:
   conf:
