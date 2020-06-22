@@ -11,7 +11,7 @@ services:
       - conf:/etc/nginx/conf.d
       - vhost:/etc/nginx/vhost.d
       - dhparam:/etc/nginx/dhparam
-      - "/usr/share/nginx/html"
+      - /usr/share/nginx/html
       - certs:/etc/nginx/certs:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
     networks:
@@ -25,7 +25,7 @@ services:
     depends_on:
         - nginx-proxy
     volumes_from:
-      - nginx-proxy
+        - nginx-proxy
     volumes:
       - certs:/etc/nginx/certs:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro
