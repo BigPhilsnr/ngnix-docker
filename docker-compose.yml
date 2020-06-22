@@ -7,13 +7,11 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    volumes:
-      - conf:/etc/nginx/conf.d
-      - vhost:/etc/nginx/vhost.d
-      - dhparam:/etc/nginx/dhparam
-      - /usr/share/nginx/html
-      - certs:/etc/nginx/certs:ro
-      - /var/run/docker.sock:/tmp/docker.sock:ro
+      volumes:
+        - "/etc/nginx/vhost.d"
+        - "/usr/share/nginx/html"
+        - "certs:/etc/nginx/certs:ro"
+        - "/var/run/docker.sock:/tmp/docker.sock:ro"
     networks:
       - proxy
     restart: always
@@ -25,10 +23,10 @@ services:
     depends_on:
         - nginx-proxy
     volumes_from:
-      - nginx-proxy
+        - nginx-proxy
     volumes:
-      - certs:/etc/nginx/certs:rw
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+        - "/var/run/docker.sock:/var/run/docker.sock:ro"
+        - "certs:/etc/nginx/certs:rw"
 
 volumes:
   conf:
