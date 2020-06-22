@@ -29,10 +29,11 @@ services:
     networks:
       - proxy
 
-networks:
-  proxy:
-    external: true
-
 volumes:
   vhost:
   html:
+
+networks:
+  proxy:
+    external:
+      name: nginx-proxy
